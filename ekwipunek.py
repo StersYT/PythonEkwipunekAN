@@ -94,20 +94,21 @@ def kup_przedmiot(sklep, ekwipunek, nazwa_przedmiotu, zloto, max_waga):
 def sprzedaj_przedmiot(ekwipunek, nazwa_przedmiotu, zloto):
     if nazwa_przedmiotu in ekwipunek:
         cena_przedmiotu = ekwipunek[nazwa_przedmiotu]["wartosc"]
+        ilosc_przedmiotu = ekwipunek[nazwa_przedmiotu]["ilosc"]
         print(f"Chcesz sprzedać przedmiot {nazwa_przedmiotu}. Potwierdź tak/nie")
         potwierdz = input("Potwierdź sprzedaż: ")
         if potwierdz == "tak":
-            print(f"Sprzedano przedmiot {nazwa_przedmiotu} za {cena_przedmiotu}")
+            print(f"Sprzedano przedmiot {nazwa_przedmiotu} za {cena_przedmiotu * ilosc_przedmiotu}")
             print()
             del ekwipunek[nazwa_przedmiotu]
-            zloto += cena_przedmiotu
+            zloto += cena_przedmiotu * ilosc_przedmiotu
             return zloto
         elif potwierdz == "nie":
             print("Nie sprzedano bo nie potrafisz się zdecydować")
             print()
             return zloto
         else:
-            print("Nie podano konkretnej odpowiedzi, więc odmówiono sprzedarzy")
+            print("Nie podano konkretnej odpowiedzi, więc odmówiono sprzedaży")
             print()
             return zloto
     else:
